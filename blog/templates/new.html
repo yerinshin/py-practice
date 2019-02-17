@@ -38,20 +38,15 @@
                 </div>
               </nav>
     <br>
-   {% for blog in blogs.all %}
-        <div class="container">
-            <div class="card">
-                    <div class="card-body">
-                    <br>
-                    <h5 class="card-title">{{blog.title}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{blog.pub_date}}</h6>
-                    <p class="card-text">{{blog.summary}}</p>
-                    <a href="{%url 'detail' blog.id %}" class="card-link">...more </a>
-                    <br>
-                    </div>
-
-            </div><br>
-        </div>
-    {%endfor%}
-</body>
-
+    <div class="container">
+        <form action="{% url 'create' %}">
+           <p> 제목 : </p> 
+           <input type= "text" name = "title">
+           <br><br>
+           <p> 본문 : </p> 
+           <textarea cols =30 rows =10 name = "body"></textarea>
+           <br><br>
+           <input class = "btn btn-dark" type = "submit" value = "제출">
+        </form>
+    </div>
+    </body>
