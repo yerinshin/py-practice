@@ -20,13 +20,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '2^n+_h!e!bkm)!x2^*bjj#$!ft56540sj6sqo8&@%(^=rttjs='
+# SECRET_KEY = '2^n+_h!e!bkm)!x2^*bjj#$!ft56540sj6sqo8&@%(^=rttjs='
+import os
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '2^n+_h!e!bkm)!x2^*bjj#$!ft56540sj6sqo8&@%(^=rttjs=')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True ))
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [ '*' ]
 
 # Application definition
 
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
     'portfolio.apps.PortfolioConfig',
+   
 
     
     'allauth',
@@ -52,7 +55,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.middleware.security.SecurityMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
